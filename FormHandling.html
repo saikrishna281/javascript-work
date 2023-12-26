@@ -1,0 +1,107 @@
+<!-- <html>
+    <head></head>
+    <body>
+     <input type="text" id="k1">
+     <button onclick="addtext()">Add Text</button>
+      <script>
+        function addtext(){
+      var x =document.getElementById("k1")
+      console.log(x.value)
+        }
+      </script>
+    </body>
+</html> -->
+
+
+<!-- <html>
+    <head></head>
+    <body>
+        <input type="password" id="k1">
+        <button onclick="addpass()">Add Password</button>
+        <script>
+          function addpass(){
+        var x = document.getElementById("k1")
+        console.log(x.value)
+          }
+        </script>
+    </body>
+</html> -->
+
+
+<!-- <html>
+    <head></head>
+    <body>
+        <input type="password" id="k1"><br/>
+        <input type="password" id="k2"><br/>
+        <button onclick="show()">Show Password</button>
+        <script>
+        function show(){
+        var x = document.getElementById("k1")
+        var y = document.getElementById("k2")
+        x.type=x.type==="password" ? "text" : "password"
+        y.type=y.type==="password" ? "text" : "password"
+        }
+        </script>
+    </body>
+</html> -->
+
+<!-- 
+<html>
+    <head></head>
+    <body>
+        <input type="password" id="k1"><br/>
+        <input type="password" id="k2"><br/>
+        <button onclick="same()">Same Password</button>
+    <script>
+        function same(){
+      var s1 = document.getElementById("k1").value
+      var s2 =document.getElementById("k2").value
+      if(s1!==s2){
+        alert("Password Not Matched")
+      }else{
+        alert("Succesfully Submitted")
+      }
+        }
+    </script>
+    </body>
+</html> -->
+
+<!-- <html>
+    <head></head>
+    <body>
+        <input type="radio" name="gender" value="Male" onchange="gen(event)">:Male &nbsp;&nbsp;
+        <input type="radio" name="gender" value="Female" onchange="gen(event)">:Female &nbsp;&nbsp;
+        <input type="radio" name="gender" value="Others" onchange="gen(event)">:Others &nbsp;&nbsp;
+    <script>
+        function gen(e){
+       console.log(e.target.value)
+        }
+    </script>
+    
+    </body>
+</html> -->
+
+<!-- <html>
+    <head></head>
+    <body>
+        <input type="checkbox" onchange="check(event)" value="Html">:Html &nbsp;
+        <input type="checkbox" onchange="check(event)" value="Css">:Css &nbsp;
+        <input type="checkbox" onchange="check(event)" value="Boostrap">:Boostrap &nbsp;
+        <input type="checkbox" onchange="check(event)" value="Javascript">:Javascript &nbsp;
+        <input type="checkbox" onchange="check(event)" value="React Js">:React js &nbsp;
+   
+      <script>
+        var tec=[]
+        function check(e){
+            if(e.target.checked===true){
+                tec.push(e.target.value)
+            }else{
+                var i =tec.indexOf(e.target.value)
+                tec.splice(i,1)
+            }
+         
+        console.log(tec)
+        }
+      </script>
+    </body>
+</html> -->

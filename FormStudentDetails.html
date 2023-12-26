@@ -1,0 +1,66 @@
+<html>
+    <head></head>
+    <body>
+        <form onsubmit="event.preventDefault()">
+            <label for="fn">FirstName</label>
+            <input type="text" id="fn"><br/>
+            <label for="ln">LastName</label>
+            <input type="text" id="ln"><br/>
+            <label for="em">Email</label>
+            <input type="email" id="em"><br/>
+            <label>Gender:</label>
+            <input type="radio" name="gender" value="Male" onchange="gen(event)">:Male &nbsp;
+            <input type="radio" name="gender" value="Female" onchange="gen(event)">:Female &nbsp;
+            <input type="radio" name="gender" value="Others" onchange="gen(event)">:Others &nbsp; <br/>
+            <label for="">Technologies:</label>
+            <input type="checkbox" value="Html" onchange="tech(event)">:Html &nbsp;
+            <input type="checkbox" value="Html" onchange="tech(event)">:Css &nbsp;
+            <input type="checkbox" value="Html" onchange="tech(event)">:Boostrap &nbsp;
+            <input type="checkbox" value="Html" onchange="tech(event)">:Javascript &nbsp;
+            <input type="checkbox" value="Html" onchange="tech(event)">:React Js &nbsp; <br/>
+            <label for="">Country:</label>
+            <select name="cntry" id="cn">
+            <option value="india">India</option>
+            <option value="goa">Goa</option>
+            <option value="England">England</option>
+            <option value="NewZealand">NewZealand</option>
+            </select><br/>
+            <button type="submit" onclick="addstudent()">Add Student</button>
+        </form>
+        <script>
+            var student =[]
+            var gender;
+            function gen(e){
+              gender=e.target.value
+            }
+            var tec=[]
+            function tech(e){
+            if(e.target.checked===true){
+                tec.push(e.target.value)
+            }else{
+                var i = tec.indexOf(e.target.value)
+                tec.splice(i,1)
+            }
+            }
+            function addstudent(){
+             var newstudent ={
+                firstname:'',
+                lastname:'',
+                email:'',
+                gender:'',
+                technologies:[],
+                country:''
+             }
+             newstudent.firstname=document.getElementById("fn").value;
+             newstudent.lastname=document.getElementById('ln').value;
+             newstudent.email=document.getElementById('em').value;
+             newstudent.gender=gender;
+             newstudent.technologies=tec;
+             newstudent.country=document.getElementById('cn').value
+             student.push(newstudent)
+             console.log(student)
+            }
+            
+        </script>
+    </body>
+</html>

@@ -1,0 +1,136 @@
+<html>
+    <head></head>
+    <body>
+        <button onclick="sortace()">A-Z</button>
+        <button onclick="sortdec()">Z-A</button>
+        
+        <input type="text" onkeyup="searchbox()" id="search">
+
+        <table border="1px solid black">
+            <thead>
+                <tr>
+                    <th>Firtstname</th>
+                    <th>Lastname</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>City</th>
+                    <th>Salary</th>
+                </tr>
+            </thead>
+            <tbody id="t1"></tbody>
+        </table>
+        <script>
+            var people = [
+                        {
+                        "firstname": "praveen",
+                        "lastname": "gubbala",
+                        "age": 36,
+                        "gender": "male",
+                        "city": "hyd",
+                        "salary": 10000
+                        },
+                        {
+                        "firstname": "srikanth",
+                        "lastname": "gubbala",
+                        "age": 32,
+                        "gender": "male",
+                        "city": "bengaluru",
+                        "salary": 20000
+                        },
+                        {
+                        "firstname": "pradeep",
+                        "lastname": "reddy",
+                        "age": 21,
+                        "gender": "male",
+                        "city": "hyd",
+                        "salary": 25000
+                        },
+                        {
+                        "firstname": "mounika",
+                        "lastname": "mudiraj",
+                        "age": 20,
+                        "gender": "female",
+                        "city": "nalgonda",
+                        "salary": 30000
+                        },
+                        {
+                        "firstname": "nikhil",
+                        "lastname": "m",
+                        "age": 22,
+                        "gender": "male",
+                        "city": "guntur",
+                        "salary": 2000
+                        },
+                        {
+                        "firstname": "riya",
+                        "lastname": "bhadouria",
+                        "age": 14,
+                        "gender": "female",
+                        "city": "indore",
+                        "salary": 40000
+                        }
+                
+            ];
+
+            createtable(people);
+            //sorting
+              function sortace(){
+                people.sort((a,b)=>{
+                    return a.firstname.localeCompare(b.firstname);
+                })
+                createtable(people);
+              }
+              function sortdec(){
+                people.sort((a,b)=>{
+                    return b.firstname.localeCompare(a.firstname)
+                })
+                createtable(people)
+              }
+          //seaching
+          var search =document.getElementById('search');
+          function searchbox(){
+           var filteredpeople = people.filter((person)=>{
+                return (person.firstname.toLowerCase().startsWith(search.value.toLowerCase()) ||
+                        person.gender.toLowerCase().startsWith(search.value.toLowerCase())
+                       ) 
+            })
+            createtable(filteredpeople)
+          }
+
+            function createtable(arr) {
+                var tbody = document.getElementById('t1');
+                tbody.innerHTML = '';
+
+                arr.forEach((data) => {
+                    var trow = document.createElement("tr");
+
+                    const firstnametd = document.createElement("td");
+                    firstnametd.innerHTML = data.firstname;
+                    trow.appendChild(firstnametd);
+
+                    const lastnametd = document.createElement('td');
+                    lastnametd.innerHTML = data.lastname;
+                    trow.appendChild(lastnametd);
+
+                    const agetd = document.createElement('td');
+                    agetd.innerHTML = data.age;
+                    trow.appendChild(agetd);
+
+                    const gendertd = document.createElement('td');
+                    gendertd.innerHTML = data.gender;
+                    trow.appendChild(gendertd);
+
+                    const citytd = document.createElement('td');
+                    citytd.innerHTML = data.city;
+                    trow.appendChild(citytd);
+
+                    const salarytd = document.createElement('td');
+                    salarytd.innerHTML = data.salary;
+                    trow.appendChild(salarytd);
+
+                    tbody.appendChild(trow);
+                });
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <style>
+            label{
+                color: red;
+                font-weight: bold;
+            }
+            h1{
+                color: red;
+                font-weight: bold;
+            }
+            .contact-container{
+                text-align: center;
+                background-color: antiquewhite;
+                margin: 0px 35% 0px 38%;
+            }
+            input{
+                
+                margin: 13px;
+            }
+            button{
+                background-color: orange;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+
+            <div class="contact-container">
+                <form onsubmit="event.preventDefault()">
+                <h1>Add Contact Cards</h1>
+                <label for="Na">Name</label>
+                <input type="text"  id="Na"><br/>
+                <label for="Nu">Number</label>
+                <input type="number"  id="Nu"><br/>
+                <label for="em">Email</label>
+                <input type="email"  id="em"><br/>
+                <label for="im">Image</label>
+                <input type="url"  id="im"><br/>
+                <button type="submit" onclick="addcontact()">Add contact</button>
+            </form>
+            </div>
+            <ul id="d1">
+          
+            </ul>
+            <script>
+                var contactlist=[]
+              function addcontact(){
+                     newContact={
+                        name:'',
+                        number:'',
+                        email:'',
+                        image:''
+                    }
+                    newContact.name=document.getElementById('Na').value;
+                    newContact.number=document.getElementById('Nu').value;
+                    newContact.email=document.getElementById('em').value;
+                    newContact.image=document.getElementById('im').value;
+                    contactlist.push(newContact)
+                    console.log(contactlist)
+
+
+                   contactlist.forEach((a,i)=>{
+                    const y=document.getElementById("d1")
+
+                    const imgli=document.createElement('img');
+                    imgli.src=a.image;
+                    y.appendChild(imgli)
+
+                   const nameli=document.createElement('li')
+                    nameli.innerHTML=a.name;
+                    y.appendChild(nameli)
+
+                   const numberli=document.createElement('li');
+                   numberli.innerHTML=a.number;
+                   y.appendChild(numberli)
+
+                 const emli=document.createElement('li');
+                 emli.innerHTML=a.email;
+                 y.appendChild(emli)
+
+                   
+                   
+            })
+              }
+             
+            </script>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,73 @@
+<!-- <html>
+  <head></head>
+  <body>
+    <button  onclick="abc()">Add Text</button>
+    <h1 id="d1"></h1>
+     <script>
+      function abc(){
+        var x = document.getElementById("d1")
+        x.innerHTML="Welcome to different World"
+      }
+     </script>
+  </body>
+</html> -->
+
+<!-- <html>
+  <head>
+    <style>
+      #d1{
+        width: 200px;
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="d1"></div>
+    <button onclick="abc('red')">Red</button>
+    <button  onclick="abc('green')">Green</button>
+    <button  onclick="abc('blue')">Blue</button>
+    <button onclick="reset()">Reset</button>
+    <script>
+      function abc(color){
+        var x = document.getElementById("d1")
+        x.style.backgroundColor=color
+      }
+      function reset(){
+        var x = document.getElementById("d1")
+        x.style.backgroundColor=''
+      }
+    </script>
+  </body>
+</html> -->
+
+
+<!-- <html>
+    <head>
+    </head>
+   <button onclick="abc()">Toggle</button>
+     <h1 id="d1">true</h1>
+     <script>
+      function abc(){
+       var x = document.getElementById("d1")
+       x.innerHTML = x.innerHTML === "true" ? "false" : "true";
+      }
+     </script>
+    </body>
+</html> -->
+
+<html>
+  <head></head>
+  <body>
+    <input type="text" id="d1">
+    <button onclick="abc()"> Add Name</button>
+    <h1 id="d2"></h1>
+    <script>
+      function abc(){
+      var x = document.getElementById("d1")
+      var y =document.getElementById('d2')
+      y.innerHTML=x.value
+
+      }
+    </script>
+  </body>
+</html>

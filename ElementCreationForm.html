@@ -1,0 +1,165 @@
+<html>
+    <head>
+        <style>
+            .container{
+                flex-direction: row;
+                
+            }
+            .form-container{
+               width: 15%;
+                border: 1px solid black;
+                margin-bottom: 10px;
+            }
+            .table-conatiner{
+                border: 1px solid black;
+            }
+            img{
+                width: 100px;
+                height: 100px;
+            }
+            table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+        </style>
+    </head>
+    <body>
+        <div class="container">
+        <div class="form-container">
+        <form onsubmit="event.preventDefault()">
+        <label for="profile">Profile</label>
+        <input type="url" id="im"><br/>
+        <label for="fn">Firtname</label>
+        <input type="text" id="fn"><br/>
+        <label for="ln">Lastname</label>
+        <input type="text" id="ln"><br/>
+        <label for="em">Email</label>
+        <input type="email" id="em"><br/>
+        <label >Address</label>
+        <input type="text" id="ad"><br/>
+        <label>Gender:</label><br/>
+        <input type="radio" name="gen" onchange="Gender(event)" value="Male">:Male &nbsp;<br/>
+        <input type="radio" name="gen" onchange="Gender(event)" value="Female">:Female &nbsp;<br/>
+        <input type="radio" name="gen" onchange="Gender(event)" value="Others">:Others &nbsp;<br/>
+        <label>Domain:</label><br/>
+        <input type="checkbox" value="Html" onchange="Domain(event)">:Html &nbsp;<br/>
+        <input type="checkbox" value="Css" onchange="Domain(event)">:Css &nbsp;<br/>
+        <input type="checkbox" value="Boostrap" onchange="Domain(event)">:Boostrap &nbsp;<br/>
+        <input type="checkbox" value="Javascript" onchange="Domain(event)">:Javascript &nbsp;<br/>
+        <input type="checkbox" value="React js" onchange="Domain(event)">:React js &nbsp;<br/>
+        <button type="submit" onclick="addstudent()">Add Student</button>
+    </form>
+</div>
+<div class="table-conatiner">
+    <table border="2px solid black">
+        <thead>
+            <th>Profile</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Gender</th>
+            <th>Skills</th>
+        </thead>
+        <!-- <tbody id="t1">
+
+        </tbody> -->
+        
+    </table>
+    <div>
+        <ul id="t1">
+
+        </ul>
+    </div>
+</div>
+</div>
+       <script>
+        var student=[]
+        var gender;
+        function Gender(e){
+            gender=e.target.value
+        }
+        var domain=[]
+            function Domain(e){
+            if(e.target.checked===true){
+                domain.push(e.target.value)
+            }else{
+                var i = domain.indexOf(e.target.value)
+                domain.splice(i,1)
+            }
+            }
+        function addstudent(){
+        newstudent=
+            {
+                Image:'',
+                Firstname:'',
+                Lastname:'',
+                Email:'',
+                Address:'',
+                Gender:'',
+                Domain:[]
+            }
+            newstudent.Image=document.getElementById('im').value;
+            newstudent.Firstname=document.getElementById('fn').value;
+            newstudent.Lastname=document.getElementById('ln').value;
+            newstudent.Email=document.getElementById('em').value;
+            newstudent.Address=document.getElementById('ad').value;
+            newstudent.Gender=gender;
+            newstudent.Domain=domain;
+            student.push(newstudent)
+            
+            student.forEach((s,i)=>{
+            const newtr=document.createElement('tr');
+             
+             const imgtd=document.createElement('img')
+             imgtd.src=s.Image;
+             newtr.appendChild(imgtd);
+
+            const firstnametd=document.createElement('td');
+            firstnametd.innerHTML=s.Firstname;
+            newtr.appendChild(firstnametd)
+            
+            const lastnametd=document.createElement('td');
+            lastnametd.innerHTML=s.Lastname;
+            newtr.appendChild(lastnametd);
+
+            const emailtd=document.createElement('td');
+            emailtd.innerHTML=s.Email;
+            newtr.appendChild(emailtd);
+
+            const addresstd=document.createElement('td');
+            addresstd.innerHTML=s.Address;
+            newtr.appendChild(addresstd);
+
+            const gentd=document.createElement('td');
+            gentd.innerHTML=s.Gender;
+            newtr.appendChild(gentd)
+
+            const domaintd=document.createElement('td');
+            domaintd.innerHTML=s.Domain;
+            newtr.appendChild(domaintd)
+            
+            
+
+            var x=document.getElementById('t1')
+              x.appendChild(newtr)
+            console.log(newtr)
+        })
+        }
+
+      
+
+       </script>
+    </body>
+</html>

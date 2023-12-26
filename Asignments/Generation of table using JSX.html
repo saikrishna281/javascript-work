@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <style></style>  
+    </head>
+    <body>
+        <div id="root"></div>
+         <script type="text/babel">
+            var students =[
+                {
+                    name:'krishna',
+                    age:'26',
+                    gender:'male',
+                    email:'saivegi89@gmail.com'
+                },
+                {
+                    name:'ramu',
+                    age:'36',
+                    gender:'male',
+                    email:'ramuvegi89@gmail.com'
+                },
+                {
+                    name:'mani',
+                    age:'25',
+                    gender:'male',
+                    email:'mani89@gmail.com'
+                },
+                {
+                    name:'viany',
+                    age:'28',
+                    gender:'male',
+                    email:'viany89@gmail.com'
+                },
+            ]
+            function deletebtn(i){
+              students.splice(i,1)
+              abc()
+            }
+          function abc(){
+            var jsx = <div>
+                       <table border="1px solid">
+                        <tr>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Email</th>
+                            <th>Options</th>
+                        </tr>
+                        {
+                            students.map((s,i)=>{
+                               return <tr>
+                                         <td>{s.name}</td>
+                                         <td>{s.age}</td>
+                                         <td>{s.gender}</td>
+                                         <td>{s.email}</td>
+                                         <td><button onClick={()=>{deletebtn(i)}}>Delete</button></td>
+                                       </tr>
+                            })
+                        }
+                       </table>
+                    </div>
+                    ReactDOM.render(jsx,document.getElementById('root'))
+          }
+          abc()
+         </script>
+    </body>
+</html>

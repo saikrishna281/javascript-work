@@ -1,0 +1,25 @@
+<html>
+    <head>
+       <style>
+        input{
+            width: 30px;
+            border: 0px;
+            border-bottom: 2px solid;
+            outline: none;
+            margin: 10px;
+            text-align: center;
+        }
+       </style> 
+    </head>
+    <body>
+        <input type="text" onkeyup="abc(event)">
+        <input type="text" onkeyup="abc(event)">
+        <input type="text" onkeyup="abc(event)">
+        <input type="text"onkeyup="abc(event)">
+         <script>
+            function abc(e){
+            e.target.nextElementSibling.focus()
+            }
+         </script>
+    </body>
+</html>

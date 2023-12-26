@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <style>
+            #d1 {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+    
+            #d1 li {
+                width: 200px;
+                list-style: none;
+                font-size: 20px;
+                border: 1px solid;
+                margin: 10px;
+                text-align: center;
+                font-family: Arial;
+                border-radius: 10px;
+            }
+    
+            d1 li::first-line {
+                padding: 10px;
+            }
+    
+            #d1 li img {
+                width: 100%;
+                display: block;
+            }
+        </style>
+    </head>
+
+    <body>
+        <button onclick="getcountries()">Get Countries</button>
+        <input type="text" onkeyup="searchbox()" id="searchitem">
+        <button onclick="ace()">A-Z</button>
+        <button onclick="dce()">Z-A</button>
+        <ul id="d1">
+
+        </ul>
+        <script>
+
+         
+
+            var countryList=[];
+
+            function searchbox(){
+               var searchitem= document.getElementById("searchitem").value.toLowerCase();
+
+               var filteredCountries=countryList.filter((singleCountry)=>{
+                return singleCountry.name.common.toLowerCase().includes(searchitem)
+               })
+               displayCountries(filteredCountries)
+            }
+            function getcountries(){
+                $.get("https://restcountries.com/v3.1/all",function(countries){
+                   countryList=countries
+                    displayCountries(countries)
+                })
+            }
+
+                   function displayCountries(countries){
+                    var countryListElement = document.getElementById("d1");
+                     countryListElement.innerHTML = "";
+
+                      countries.forEach((country)=>{
+                      var newli=document.createElement('li'); 
+                      newli.innerHTML=country.name.common;
+
+                      var imgli=document.createElement('img');
+                      imgli.src=country.flags.svg;
+                     
+                      newli.appendChild(imgli);
+
+                      countryListElement.appendChild(newli);
+                      
+                      
+                    })
+            }
+
+            function ace(){
+                countryList.sort((a,b)=>{
+                return a.name.common.localeCompare(b.name.common)
+                })
+                displayCountries(countryList)
+            }
+            function dce(){
+                countryList.sort((a,b)=>{
+                    return b.name.common.localeCompare(a.name.common)
+                })
+                displayCountries(countryList)
+            }
+        </script>
+    </body>
+</html>

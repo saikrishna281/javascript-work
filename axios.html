@@ -1,0 +1,77 @@
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <style>
+        #d1 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        #d1 li {
+            width: 200px;
+            list-style: none;
+            font-size: 20px;
+            border: 1px solid;
+            margin: 10px;
+            text-align: center;
+            font-family: Arial;
+            border-radius: 10px;
+        }
+
+        d1 li::first-line {
+            padding: 10px;
+        }
+
+        #d1 li img {
+            width: 100%;
+            display: block;
+        }
+    </style>
+</head>
+<button onclick="getcountries()">Get Countries</button>
+<input type="text" onkeyup="searchbox()" id="d2">
+<ul id="d1">
+
+</ul>
+
+<body>
+    <script>
+        var countriesList = [];
+        function searchbox() {
+            var searchTerm = document.getElementById("d2").value.toLowerCase();
+
+            var filteredCountries = countriesList.filter((country) => {
+                return country.name.common.toLowerCase().includes(searchTerm);
+            });
+
+            displayCountries(filteredCountries);
+        }
+
+        function getcountries() {
+            $.get("https://restcountries.com/v3.1/all", function (countries) {
+                countriesList = countries;
+                console.log(countriesList)
+                displayCountries(countries);
+            });
+        }
+        function displayCountries(countries) {
+            var countryListElement = document.getElementById("d1");
+            countryListElement.innerHTML = "";
+
+            countries.forEach((country) => {
+                var newli = document.createElement("li");
+                newli.innerHTML = country.name.common;
+
+                var imgli = document.createElement('img');
+                imgli.src = country.flags.svg;
+                newli.appendChild(imgli);
+
+                countryListElement.appendChild(newli);
+            });
+        } 
+    </script>
+</body>

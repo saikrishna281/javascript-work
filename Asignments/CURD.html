@@ -1,0 +1,192 @@
+<html>
+
+<head>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+    </style>
+</head>
+<div id="root"></div>
+<script type="text/babel">
+    var employees = [
+        {
+            firstname: 'praveen',
+            lastname: 'gubbala',
+            age: 38,
+            gender: 'male'
+        },
+        {
+            firstname: 'srikant',
+            lastname: 'gubbala',
+            age: 28,
+            gender: 'male'
+        },
+        {
+            firstname: 'kumari',
+            lastname: 'asdasd',
+            age: 30,
+            gender: 'female'
+        },
+        {
+            firstname: 'ramesh',
+            lastname: 'reddy',
+            age: 11,
+            gender: 'male'
+        }
+    ]
+
+    var editedIndex = null; // Track the index of the employee being edited
+
+    function addemp(e) {
+        e.preventDefault()
+        var newemp = {
+            firstname: document.getElementById("fn").value,
+            lastname: document.getElementById('ln').value,
+            age: document.getElementById('ag').value,
+            gender: document.getElementById('gen').value,
+        };
+
+        if (editedIndex !== null) {
+            // If an index is set, update the existing employee
+            employees[editedIndex] = newemp;
+            editedIndex = null; // Reset the editedIndex after editing
+        } else {
+            // Otherwise, add a new employee
+            employees.push(newemp)
+        }
+
+        abc();
+    }
+
+    function deleteemp(i) {
+        employees.splice(i, 1);
+        abc();
+    }
+
+    function edit(i) {
+        // Set the editedIndex to the index of the employee being edited
+        editedIndex = i;
+        // Display the modal for editing
+        document.getElementById("myModal").style.display = "block";
+        // Populate the form in the modal with the employee details
+        document.getElementById("fn-edit").value = employees[i].firstname;
+        document.getElementById("ln-edit").value = employees[i].lastname;
+        document.getElementById("ag-edit").value = employees[i].age;
+        document.getElementById("gen-edit").value = employees[i].gender;
+    }
+
+    function saveEdit() {
+        // Save the edited details back to the employees array
+        employees[editedIndex].firstname = document.getElementById("fn-edit").value;
+        employees[editedIndex].lastname = document.getElementById("ln-edit").value;
+        employees[editedIndex].age = document.getElementById("ag-edit").value;
+        employees[editedIndex].gender = document.getElementById("gen-edit").value;
+        // Close the modal
+        document.getElementById("myModal").style.display = "none";
+        // Reset the editedIndex
+        editedIndex = null;
+        // Update the table
+        abc();
+    }
+
+    function cancelEdit() {
+        // Close the modal without saving changes
+        document.getElementById("myModal").style.display = "none";
+        // Reset the editedIndex
+        editedIndex = null;
+    }
+
+    function abc() {
+        var jsx = (
+            <div>
+                <form onSubmit={(event) => { addemp(event) }}>
+                    <input type="text" placeholder="FirstName" id="fn" /><br />
+                    <input type="text" placeholder="LastName" id="ln" /><br />
+                    <input type="text" placeholder="age" id="ag" /><br />
+                    <input type="text" placeholder="Gender" id="gen" /><br />
+                    <button >Add to Table</button>
+                </form>
+                <table>
+                    <tr>
+                        <th>FirstName</th>
+                        <th>LastName</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Actions</th>
+                    </tr>
+                    {
+                        employees.map((emp, i) => {
+                            return <tr key={i}>
+                                <td>{emp.firstname}</td>
+                                <td>{emp.lastname}</td>
+                                <td>{emp.age}</td>
+                                <td>{emp.gender}</td>
+                                <td>
+                                    <button onClick={() => { deleteemp(i) }}>Delete</button>
+                                    <button onClick={() => { edit(i) }}>Edit</button>
+                                </td>
+                            </tr>
+                        })
+                    }
+                </table>
+
+                {/* Modal for editing */}
+                <div id="myModal" className="modal">
+                    <div className="modal-content">
+                        <span className="close" onClick={cancelEdit}>&times;</span>
+                        <form>
+                            <input type="text" placeholder="FirstName" id="fn-edit" /><br />
+                            <input type="text" placeholder="LastName" id="ln-edit" /><br />
+                            <input type="text" placeholder="age" id="ag-edit" /><br />
+                            <input type="text" placeholder="Gender" id="gen-edit" /><br />
+                            <button type="button" onClick={saveEdit}>Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        );
+
+        ReactDOM.render(jsx, document.getElementById('root'));
+    }
+    abc()
+</script>
+
+</html>

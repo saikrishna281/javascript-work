@@ -1,0 +1,116 @@
+<html>
+
+<head>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<div id="root"></div>
+<script type="text/babel">
+    var employees = [
+        {
+            firstname: 'praveen',
+            lastname: 'gubbala',
+            age: 38,
+            gender: 'male'
+        },
+        {
+            firstname: 'srikant',
+            lastname: 'gubbala',
+            age: 28,
+            gender: 'male'
+        },
+        {
+            firstname: 'kumari',
+            lastname: 'asdasd',
+            age: 30,
+            gender: 'female'
+        },
+        {
+            firstname: 'ramesh',
+            lastname: 'reddy',
+            age: 11,
+            gender: 'male'
+        }
+    ]
+    function addemp(e) {
+        e.preventDefault()
+        var newemp =
+        {
+            firstname: '',
+            lastname: '',
+            age: '',
+            gender: ''
+        }
+        newemp.firstname = document.getElementById("fn").value;
+        newemp.lastname = document.getElementById('ln').value;
+        newemp.age = document.getElementById('ag').value;
+        newemp.gender = document.getElementById('gen').value;
+        employees.push(newemp)
+        abc()
+    }
+
+    function deleteemp(i){
+        employees.splice(i,1)
+        abc()
+    }
+   
+    function abc() {
+
+        var jsx = <div>
+            <form onSubmit={(event) => { addemp(event) }}>
+                <input type="text" placeholder="FirstName" id="fn" /><br />
+                <input type="text" placeholder="LastName" id="ln" /><br />
+                <input type="text" placeholder="age" id="ag" /><br />
+                <input type="text" placeholder="Gender" id="gen" /><br />
+                <button >Add to Table</button>
+            </form>
+            <table>
+                <tr>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Remove</th>
+                </tr>
+                {
+                    employees.map((emp,i) => {
+                        return <tr>
+                            <td>{emp.firstname}</td>
+                            <td>{emp.lastname}</td>
+                            <td>{emp.age}</td>
+                            <td>{emp.gender}</td>
+                            <td><button onClick={()=>{deleteemp(i)}}>Delete</button></td>
+                            <td ><button onClick={()=>{edit(event)}}>Edit</button></td>
+                        </tr>
+
+                    })
+                }
+            </table>
+        </div>
+
+
+        ReactDOM.render(jsx, document.getElementById('root'))
+    }
+    abc()
+</script>
+
+</html>
