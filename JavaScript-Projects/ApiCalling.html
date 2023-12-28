@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function App() {
+        const [display, setDisplay] = React.useState([]);
+        
+        const searchbox = () => {
+          var search = document.getElementById('search').value.toLowerCase();
+          var filteredCountries = display.filter((country) =>
+            country.name.common.toLowerCase().startsWith(search)
+          );
+          setDisplay(filteredCountries);
+        };
+
+        const getdata = () => {
+          axios
+            .get('https://restcountries.com/v3.1/all')
+            .then((res) => {
+              setDisplay(res.data);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        };
+
+        return (
+          <div>
+            <button onClick={getdata}>Get Data</button>
+            <input onKeyUp={searchbox} id="search" />
+            <ul>
+              {display.map((country, index) => (
+                <li key={index}>{country.name.common}</li>
+              ))}
+            </ul>
+          </div>
+        );
+      }
+
+      ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+  </body>
+</html>

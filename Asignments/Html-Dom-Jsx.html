@@ -1,0 +1,90 @@
+<html>
+    <head></head>
+    <body>
+        <h1>HTML Elements</h1>
+       <ul>
+        <li>Sai</li>
+        <li>Krishna</li>
+        <li>Ramu</li>
+        <li>Lakshman</li>
+        <li>Raju</li>
+       </ul>
+    </body>
+</html>
+
+<html>
+    <head></head>
+    <body>
+        <h1>Dom Elements</h1>
+        <ul id="d1"></ul>
+        <script>
+            var ele =["Sai","Krishna","Ramu","Lakshman","Raju"]
+           ele.map((e)=>{
+           var x =document.getElementById("d1")
+            
+           var newli =document.createElement('li');
+           newli.innerHTML=e;
+           x.appendChild(newli)
+
+           })
+        </script>
+    </body>
+</html>
+
+<html>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>   
+      
+    </head>
+    <body>
+        <ul id="root"></ul>
+        <script type="text/babel">
+            var arr=["sai","krishna","Ramu","Lakshman","Raju"]
+          var jsx = <div>
+                    <h1>Jsx Elements</h1>
+                    {
+                        arr.map((E)=>{
+                            return(
+                                <li>{E}</li>
+                            )
+                        })
+                    }
+                   </div>
+                   ReactDOM.render(jsx,document.getElementById('root'))
+        </script>
+    </body>
+</html>
+
+<html>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>   
+      
+    </head>
+  
+    <body>
+        <ul id="d2"></ul>
+        <script type="text/babel">
+            var array=["sai","krishna","Ramu","Lakshman","Raju"]
+            function Arr(){
+               return(
+                <div>
+                <h1>Component Jsx</h1>
+               <ul>
+                {
+                    array.map((a)=>(
+                        <li>{a}</li>
+                    ))
+                }
+                </ul>
+            </div>
+               )
+            }
+       
+            ReactDOM.render(<Arr />,document.getElementById('d2'))
+        </script>
+    </body>
+</html>
