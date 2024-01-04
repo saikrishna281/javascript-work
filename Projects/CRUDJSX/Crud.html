@@ -1,0 +1,59 @@
+<html>
+
+<head>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.3/axios.min.js"
+        integrity="sha512-JWQFV6OCC2o2x8x46YrEeFEQtzoNV++r9im8O8stv91YwHNykzIS2TbvAlFdeH0GVlpnyd79W0ZGmffcRi++Bw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        function ABC() {
+            var [data, setData] = React.useState([])
+            function getdata() {
+                axios.get('https://hub.dummyapis.com/employee')
+                    .then((res) => {
+                        var list = (res.data)
+                        setData(list)
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    })
+            }
+            function deletebtn(i) {
+           const newdata=[...data];
+           newdata.splice(i,1);
+           setData(newdata)
+            }
+            return (
+                <div>
+                    <button onClick={() => { getdata() }}>GET DATA</button>
+                    {
+                        data.map((emp, i) => {
+                            return (
+                                <div>
+                                    <li>{emp.firstName}</li>
+                                    <li>{emp.lastName}</li>
+                                    <li>{emp.dob}</li>
+                                    <li>{emp.age}</li>
+                                    <li>{emp.contactNumber}</li>
+                                    <li>{emp.salary}</li>
+                                    <li><button onClick={() => { deletebtn(i) }}>Delete</button></li>
+                                </div>
+
+
+                            )
+                        })
+                    }
+                </div>
+            )
+        }
+        ReactDOM.render(<ABC />, document.getElementById("root"))
+    </script>
+</body>
+
+</html>

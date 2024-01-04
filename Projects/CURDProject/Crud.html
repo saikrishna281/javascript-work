@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.3/axios.min.js" integrity="sha512-JWQFV6OCC2o2x8x46YrEeFEQtzoNV++r9im8O8stv91YwHNykzIS2TbvAlFdeH0GVlpnyd79W0ZGmffcRi++Bw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <style>
+    table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+   </style>
+    </head>
+    <body>
+       <div>
+       
+        <h1>CRUD OPERTIONS</h1>
+            <button onclick="getdata()">Get Data</button>
+            <input type="text" onkeyup="searching()" id="search">
+            <button onclick="ace()" >A-Z</button>
+            <button onclick="dce()" >Z-A</button>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Profile</th>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>Age</th>
+                    <th>DOB</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>Salary</th>
+                    <th>Address</th>
+                    <th>Remove</th>
+                </tr>
+                <tbody id="tbody">
+
+                </tbody>
+            </table>
+           </div>
+       <script src="script.js"></script>
+    </body>
+</html>
